@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transportes Sila - Gestor de Mecánica</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    header {
+      background: #00264d;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 8px;
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 8px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      background: white;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background: #004080;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Transportes Sila</h1>
+    <p>Gestor de Mantenimiento - Cambio de Aceite por Placa</p>
+  </header>
+
+  <form id="formulario">
+    <label for="placa">Placa del Camión:</label>
+    <input type="text" id="placa" required placeholder="Ej. ABC-123">
+
+    <label for="fecha">Fecha de Cambio de Aceite:</label>
+    <input type="date" id="fecha" required>
+
+    <label for="kilometraje">Kilometraje:</label>
+    <input type="number" id="kilometraje" required>
+
+    <button type="submit">Registrar Cambio</button>
+  </form>
+
+  <table id="tabla">
+    <thead>
+      <tr>
+        <th>Placa</th>
+        <th>Fecha</th>
+        <th>Kilometraje</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Datos se insertarán aquí -->
+    </tbody>
+  </table>
+
+  <script>
+    const form = document.getElementById('formulario');
+    const tabla = document.getElementById('tabla').querySelector('tbody');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const placa = document.getElementById('placa').value.toUpperCase();
+      const fecha = document.getElementById('fecha').value;
+      const kilometraje = document.getElementById('kilometraje').value;
+
+      const fila = document.createElement('tr');
+      fila.innerHTML = `
+        <td>${placa}</td>
+        <td>${fecha}</td>
+        <td>${kilometraje} km</td>
+      `;
+
+      tabla.appendChild(fila);
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
